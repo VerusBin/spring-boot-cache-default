@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nanc.mapper.EmployeeMapper">
+
+    <select id="getById" parameterType="int" resultType="employee">
+        SELECT * FROM employee WHERE id=#{id}
+    </select>
+
+    <select id="getByName" parameterType="string" resultType="employee">
+        SELECT * FROM employee WHERE last_name=#{lastName}
+    </select>
+
+    <update id="updateById" parameterType="employee">
+        UPDATE employee
+        <set>
+            last_name=#{lastName},
+            email=#{email},
+            gender=#{gender},
+            d_id=#{dId}
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM employee WHERE id=#{id}
+    </delete>
+
+    <insert id="insertEmp" parameterType="employee">
+        INSERT INTO employee(last_name,email,gender,d_id)
+        VALUES (#{lastName},#{email},#{gender},#{dId})
+    </insert>
+</mapper>
